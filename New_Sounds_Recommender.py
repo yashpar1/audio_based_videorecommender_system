@@ -11,7 +11,7 @@ def AudioRecommender(path_to_new_sounds):
     """A function that takes a path to the audioset_dataframe.csv and where new sounds recommendations are wanted for
     and returns video recommendations. Comments are minimal as the code is largely reused from other files.
     """
-    df_trained = pd.read_csv('data/audioset_dataframe.csv', converters={'audio': pd.eval})
+    df_trained = pd.read_csv('data/audioset_dataframe.csv', converters={'audio': pd.eval}, nrows=15)
 
     # formats new audio input correctly
     data_init = []
@@ -42,33 +42,25 @@ def AudioRecommender(path_to_new_sounds):
 
     df_new = pd.DataFrame.from_records(features)
     df_new['audio'] = df_new['audio'].apply(norm)
+    df_total = pd.concat([df_trained, df_new]).reset_index()
 
-    aud_embeds_trained = pd.DataFrame(df_trained['audio'].tolist())
-    aud_embeds_trained = aud_embeds_trained.fillna(0)
-    aud_embeds_trained = aud_embeds_trained.to_numpy()
+    aud_embeds = pd.DataFrame(df_total['audio'].tolist())
+    aud_embeds = aud_embeds.fillna(0)
 
-    aud_embeds_new = pd.DataFrame(df_new['audio'].tolist())
-    aud_embeds_new = aud_embeds_new.fillna(0)
-    aud_embeds_new = aud_embeds_new.to_numpy()
-
-    i = 0
+    i = -1
     for new_audio in df_new:
 
-        cos_sim = pd.DataFrame(linear_kernel(aud_embeds_new[i,:], aud_embeds_trained))
+        cos_sim = pd.DataFrame(linear_kernel(np.array(aud_embeds), np.array(aud_embeds)[i].reshape(1, -1)), columns=['cos_sim'])
 
-        indices = pd.Series(aud_embeds_new.index, index=df_new['video_id']).drop_duplicates()
+        temp = df_total.join(cos_sim)
+        temp = temp[~temp['video_id'].str.contains('new_video')]
+        temp = temp.sort_values(by=['cos_sim'], ascending=False)
+        print(temp)
 
-        # finds indices of video id
-        idx = indices[new_audio['video_id']]
-        # finds the highest cosine similarities
-        similarity_scores = list(enumerate(cos_sim[idx]))
-        similarity_scores = sorted(similarity_scores, key=lambda x: x[1], reverse=True)
-        top_five = similarity_scores[1:6]
-        video_indices = [i[0] for i in top_five]
-        top_five_ids = df_trained['video_id'].iloc[video_indices]
-        top_five_ids = 'youtube.com/watch?v=' + top_five_ids.astype(str)
+        top_five = temp['video_id'].iloc[1:6]
+        top_five = 'youtube.com/watch?v=' + top_five.astype(str)
         print(data_init[i])
-        print(top_five_ids)
-        i += 1
+        print(top_five)
+        i -= 1
 
 AudioRecommender('data/new_sounds/')
