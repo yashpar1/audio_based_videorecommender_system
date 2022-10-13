@@ -55,7 +55,6 @@ def AudioRecommender(path_to_new_sounds):
         temp = df_total.join(cos_sim)
         temp = temp[~temp['video_id'].str.contains('new_video')]
         temp = temp.sort_values(by=['cos_sim'], ascending=False)
-        print(temp)
 
         top_five = temp['video_id'].iloc[1:6]
         top_five = 'youtube.com/watch?v=' + top_five.astype(str)
