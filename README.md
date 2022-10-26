@@ -6,17 +6,17 @@ A recommender system that recommends YouTube videos based on input audio
 This project takes audio inputs and embeddings and uses them to output video recommendations using [](https://research.google.com/audioset/ "AudioSet") data, while providing the code for some feature extraction for [](https://research.google.com/youtube8m/ "YouTube-8M") data. The reasoning is fairly simple; consumers are watching movies and TV with phones in-hand increasingly often, increasing the relative importance of audio. Additionally, as genres become less meaningful (BoJack Horseman and Parks and Recreation are both comedies, for example), using other features to recommend media content becomes increasingly relevant. Lastly, audio itself contains a fair amount of information, including tone/mood and production quality.
 
 ### Methods
-TensorFlow Data Extraction
-Audio Embedding
-Cosine Similarity/Recommender Systems
+TensorFlow Data Extraction  
+Audio Embedding  
+Cosine Similarity/Recommender Systems  
 
 ### Requirements
-[](https://www.python.org/downloads/ "Python")
-[](https://www.tensorflow.org/install "TensorFlow")
-[](https://github.com/tensorflow/models/tree/master/research/audioset/vggish "VGG-ish")
-[](https://numpy.org/ "Numpy")
-[](https://pandas.pydata.org/ "Pandas")
-[](https://scikit-learn.org/stable/ "scikit-learn")
+[](https://www.python.org/downloads/ "Python")  
+[](https://www.tensorflow.org/install "TensorFlow")  
+[](https://github.com/tensorflow/models/tree/master/research/audioset/vggish "VGG-ish")  
+[](https://numpy.org/ "Numpy")  
+[](https://pandas.pydata.org/ "Pandas")  
+[](https://scikit-learn.org/stable/ "scikit-learn")  
 
 ### The Process
 #### A Brief Summary of the files and the order in which they should be run
