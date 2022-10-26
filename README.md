@@ -11,12 +11,12 @@ Audio Embedding
 Cosine Similarity/Recommender Systems  
 
 ### Requirements
-[Python](https://www.python.org/downloads/ "Python")
-[TensorFlow](https://www.tensorflow.org/install "TensorFlow")
-[VGG-ish](https://github.com/tensorflow/models/tree/master/research/audioset/vggish "VGG-ish")
-[NumPy](https://numpy.org/ "Numpy")
-[Pandas](https://pandas.pydata.org/ "Pandas")
-[Scikit-Learn](https://scikit-learn.org/stable/ "scikit-learn")
+[Python](https://www.python.org/downloads/ "Python")  
+[TensorFlow](https://www.tensorflow.org/install "TensorFlow")  
+[VGG-ish](https://github.com/tensorflow/models/tree/master/research/audioset/vggish "VGG-ish")  
+[NumPy](https://numpy.org/ "Numpy")  
+[Pandas](https://pandas.pydata.org/ "Pandas")  
+[Scikit-Learn](https://scikit-learn.org/stable/ "scikit-learn")  
 
 ### The Process
 #### A Brief Summary of the files and the order in which they should be run
